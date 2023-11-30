@@ -1,0 +1,93 @@
+﻿@page
+@model IndexModel
+@using PizzaParlor.Data
+@{
+    ViewData["Title"] = "Home page";
+    string searchTerm = Request.Query["searchTerm"];
+    string minCalories = Request.Query["minCalories"];
+    string maxCalories = Request.Query["maxCalories"];
+    string minPrice = Request.Query["minPrice"];
+    string maxPrice = Request.Query["maxPrice"];
+}
+
+<h1>Pizza Parlor</h1>
+<h2>Welcome to the Pizza Parlor!</h2>
+
+<form method="get">
+    <label for="searchTerm">Search:</label>
+    <input type="text" id="searchTerm" name="searchTerm" value="@searchTerm" />
+    
+    <label for="minCalories">Min Calories:</label>
+    <input type="number" id="minCalories" name="minCalories" value="@minCalories" />
+    
+    <label for="maxCalories">Max Calories:</label>
+    <input type="number" id="maxCalories" name="maxCalories" value="@maxCalories" />
+    
+    <label for="minPrice">Min Price:</label>
+    <input type="number" id="minPrice" name="minPrice" value="@minPrice" />
+    
+    <label for="maxPrice">Max Price:</label>
+    <input type="number" id="maxPrice" name="maxPrice" value="@maxPrice" />
+    
+    <button type="submit">Search</button>
+</form>
+
+<h3 id="pizzas">Pizzas</h3>
+<div class="menu-category">
+    @foreach (var pizza in Model.menu.GetFilteredPizzas(searchTerm, minCalories, maxCalories, minPrice, maxPrice))
+    {
+        <div class="menu-item-box">
+            <div class="menu-item">
+                <div class="menu-item-name">@pizza.Name</div>
+                <ul>
+                    @foreach(var comment in @pizza.SpecialInstructions)
+                    {
+                        <li>@comment</li>
+                    }
+                </ul>
+                <div class="menu-item-price">$@pizza.Price.ToString("N2")</div>
+                <div class="menu-item-calories">@pizza.CaloriesPerEach</div>
+            </div>
+        </div>
+    }
+</div>
+
+<h3 id="sides">Sides</h3>
+<div class="menu-category">
+    @foreach (var side in Model.menu.GetFilteredSides(searchTerm, minCalories, maxCalories, minPrice, maxPrice))
+    {
+        <div class="menu-item-box">
+            <div class="menu-item">
+                <div class="menu-item-name">@side.Name</div>
+                <ul>
+                    @foreach(var comment in @side.SpecialInstructions)
+                    {
+                        <li>@comment</li>
+                    }
+                </ul>
+                <div class="menu-item-price">$@side.Price.ToString("N2")</div>
+                <div class="menu-item-calories">@side.CaloriesPerEach</div>
+            </div>
+        </div>
+    }
+</div>
+
+<h3 id="drinks">Drinks</h3>
+<div class="menu-category">
+    @foreach (var drink in Model.menu.GetFilteredDrinks(searchTerm, minCalories, maxCalories, minPrice, maxPrice))
+    {
+        <div class="menu-item-box">
+            <div class="menu-item">
+                <div class="menu-item-name">@drink.Name</div>
+                <ul>
+                    @foreach(var comment in @drink.SpecialInstructions)
+                    {
+                        <li>@comment</li>
+                    }
+                </ul>
+                <div class="menu-item-price">$@drink.Price.ToString("N2")</div>
+                <div class="menu-item-calories">@drink.CaloriesPerEach</div>
+            </div>
+        </div>
+    }
+</div>

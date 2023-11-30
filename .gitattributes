@@ -1,0 +1,2 @@
+*.testlog filter=lfs diff=lfs merge=lfs -text
+.vs/PizzaParlor/v17/TestStore/0/038.testlog filter=lfs diff=lfs merge=lfs -text

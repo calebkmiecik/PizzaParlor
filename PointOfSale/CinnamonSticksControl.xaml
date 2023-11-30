@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="PizzaParlor.PointOfSale.CinnamonSticksControl"
+             xmlns:local="clr-namespace:PizzaParlor.PointOfSale"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:data="clr-namespace:PizzaParlor.Data;assembly=PizzaParlor.Data"
+             Height="Auto" Width="Auto">
+
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="15"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{Binding Path=Name}" Grid.Row="0"/>
+            <TextBlock Text="Customization"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="{Binding Path=Name}" FontSize="30"/>
+            <TextBlock Text="{Binding Path=Description}" FontSize="15"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="0">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Count:"/>
+                <local:CountControl x:Name="CountControl" Count="{Binding Path=SideCount, Mode=TwoWay}" HorizontalAlignment="Left"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Frosting:"/>
+                <CheckBox x:Name="FrostingCheckBox" IsChecked="{Binding Path=Frosting}" VerticalAlignment="Bottom" FontSize="25"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Calories Per Each:"/>
+                <TextBlock x:Name="CaloriesPerEachTextBlock" Text="{Binding Path=CaloriesPerEach}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Total Calories:"/>
+                <TextBlock x:Name="TotalCaloriesPerEachTextBlock" Text="{Binding Path=CaloriesTotal}"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

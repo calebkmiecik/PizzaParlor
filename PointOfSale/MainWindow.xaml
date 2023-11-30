@@ -1,0 +1,79 @@
+﻿<Window x:Class="PizzaParlor.PointOfSale.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PizzaParlor.PointOfSale"
+        mc:Ignorable="d"
+        Title="PointOfSale" Height="720" Width="1080">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="25"/>
+                </Style>
+            </Style.Resources>
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="80"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
+                    <Button x:Name="Cancel" FontWeight="Bold" Content="Cancel Order" Click="SquareClick"/>
+                    <Button FontWeight="Bold" Content="Complete Order" Click="CompleteOrder_Click"/>
+                    <Button FontWeight="Bold" Content="Back to Menu" Click="BackToMenuClick"/>
+                </StackPanel>
+                <Grid x:Name="MenuItemContainer" Visibility="Visible">
+                    <local:MenuItemSelectionControl x:Name="MenuItemSelection" Grid.Row="0"/>
+                </Grid>
+                <Grid x:Name="PaymentContainer" Visibility="Hidden">
+                    <local:PaymentControl x:Name="Payment"/>
+                </Grid>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid x:Name="SummaryContainer" Visibility="Visible">
+                <local:OrderSummaryControl/>
+            </Grid>
+        </Grid>
+        <Grid x:Name="WingsControlContainer" Grid.Row="0" Visibility="Hidden">
+            <local:WingsControl x:Name="WingsControl" Wings="{Binding Wings}"/>
+        </Grid>
+        <Grid x:Name="PizzaControlContainer" Grid.Row="0" Visibility="Hidden">
+            <local:PizzaControl x:Name="PizzaControl" Pizza="{Binding Pizza}"/>
+        </Grid>
+        <Grid x:Name="SodaControlContainer" Grid.Row="0" Visibility="Hidden">
+            <local:SodaControl x:Name="SodaControl" Soda="{Binding Soda}"/>
+        </Grid>
+        <Grid x:Name="DrinkControlContainer" Grid.Row="0" Visibility="Hidden">
+            <local:DrinkControl x:Name="DrinkControl" Drink="{Binding Drink}"/>
+        </Grid>
+        <Grid x:Name="SideControlContainer" Grid.Row="0" Visibility="Hidden">
+            <local:SideControl x:Name="SideControl" Side="{Binding Side}"/>
+        </Grid>
+        <Grid x:Name="BreadsticksControlContainer" Grid.Row="0" Visibility="Hidden">
+            <local:BreadsticksControl x:Name="BreadsticksControl" Breadsticks="{Binding Breadsticks}"/>
+        </Grid>
+        <Grid x:Name="CinnamonSticksControlContainer" Grid.Row="0" Visibility="Hidden">
+            <local:CinnamonSticksControl x:Name="CinnamonSticksControl" CinnamonSticks="{Binding CinnamonSticks}"/>
+        </Grid>
+    </Grid>
+</Window>

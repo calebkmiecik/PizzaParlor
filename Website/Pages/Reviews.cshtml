@@ -1,0 +1,32 @@
+﻿@page
+@model Website.Pages.ReviewsModel
+@{
+	ViewData["Title"] = "Reviews";
+}
+
+<form method="post">
+    <label for="NewReviewText">Write a Review:</label>
+    <textarea id="NewReviewText" name="NewReviewText" rows="4" cols="50" asp-for="NewReviewText"></textarea>
+    <br />
+    <button type="submit">Submit Review</button>
+</form>
+
+<hr />
+
+<h3>Previous Reviews</h3>
+@if (ViewData["Reviews"] is List<Review> reviews && reviews.Count > 0)
+{
+    <ul>
+        @foreach (var review in reviews)
+        {
+            <li>
+                <strong>@review.DateAdded.ToString("MMMM dd, yyyy HH:mm:ss"):</strong> @review.Text
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>No reviews yet.</p>
+}
+

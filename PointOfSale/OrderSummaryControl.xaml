@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="PizzaParlor.PointOfSale.OrderSummaryControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Height="Auto" Width="Auto">
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="Height" Value="50"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Vertical" Grid.Row="0" VerticalAlignment="Center">
+            <TextBlock Name="Date" Text="{Binding PlacedAt}"/>
+            <TextBlock Name="OrderNumber" Text="{Binding Number, StringFormat=Order #{0}}"/>
+        </StackPanel>
+
+        <ListView Name="ItemsList" Grid.Row="1" ItemsSource="{Binding OrderItems}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Path=Name}" Grid.Row="0" Grid.Column="0"/>
+                        <TextBlock Text="{Binding Path=Price, StringFormat=${0:N2}}" Grid.Row="0" Grid.Column="1"/>
+                        <ListBox ItemsSource="{Binding Path=SpecialInstructions}" Grid.Row="1" Grid.Column="0">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}" />
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" >
+                            <Button x:Name="Edit" Click="Edit_Click">Edit</Button>
+                            <Button x:Name="Delete" Click="Delete_Click">Delete</Button>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <StackPanel Orientation="Vertical" Grid.Row="2" >
+            <TextBlock Name="Subtotal" Text="{Binding Path=Subtotal, StringFormat=Subtotal: ${0:N2}}" HorizontalAlignment="Left"/>
+            <TextBlock Name="Tax" Text="{Binding Path=Tax, StringFormat=Tax: ${0:N2}}" HorizontalAlignment="Left"/>
+            <TextBlock Name="Total" Text="{Binding Path=Total, StringFormat=Total: ${0:N2}}" HorizontalAlignment="Left"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

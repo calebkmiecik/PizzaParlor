@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="PizzaParlor.PointOfSale.MenuItemSelectionControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:local="clr-namespace:PizzaParlor.PointOfSale"
+             Height="Auto" Width="Auto">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Existing content, buttons, etc. -->
+        <Grid Grid.Row="0" x:Name="ItemSelctionContainer" Visibility="Visible">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Pizzas -->
+            <StackPanel Grid.Column="0" Orientation="Vertical" >
+                <TextBlock Text="Pizzas"/>
+                <Button x:Name="BuildYourOwn" Content="Build-Your-Own" Click="SquareClick"/>
+                <Button x:Name="Supreme" Content="Supreme Pizza" Click="SquareClick"/>
+                <Button x:Name="Meats" Content="Meats Pizza" Click="SquareClick"/>
+                <Button x:Name="Veggie" Content="Veggie Pizza" Click="SquareClick"/>
+                <Button x:Name="Hawaiian" Content="Hawaiian Pizza" Click="SquareClick"/>
+            </StackPanel>
+
+            <!-- Sides -->
+            <StackPanel Grid.Column="1" Orientation="Vertical">
+                <TextBlock Text="Sides"/>
+                <Button x:Name="Breadsticks" Content="Breadsticks" Click="SquareClick"/>
+                <Button x:Name="GarlicKnots" Content="Garlic Knots" Click="SquareClick"/>
+                <Button x:Name="CinnamonSticks" Content="Cinnamon Sticks" Click="SquareClick"/>
+                <Button x:Name="Wings" Content="Wings" Click="SquareClick"/>
+            </StackPanel>
+
+            <!-- Drinks -->
+            <StackPanel Grid.Column="2" Orientation="Vertical">
+                <TextBlock Text="Drinks"/>
+                <Button x:Name="Soda" Content="Soda" Click="SquareClick"/>
+                <Button x:Name="IcedTea" Content="Iced Tea" Click="SquareClick"/>
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="WingsControlContainer" Grid.Row="0" Visibility="Hidden">
+            <local:WingsControl x:Name="WingsControl" Wings="{Binding Wings}"/>
+        </Grid>
+        <Grid x:Name="PizzaControlContainer" Grid.Row="0" Visibility="Hidden">
+            <local:PizzaControl x:Name="PizzaControl" Pizza="{Binding Pizza}"/>
+        </Grid>
+        <Grid x:Name="SodaControlContainer" Grid.Row="0" Visibility="Hidden">
+            <local:SodaControl x:Name="SodaControl" Soda="{Binding Soda}"/>
+        </Grid>
+        <Grid x:Name="DrinkControlContainer" Grid.Row="0" Visibility="Hidden">
+            <local:DrinkControl x:Name="DrinkControl" Drink="{Binding Drink}"/>
+        </Grid>
+        <Grid x:Name="SideControlContainer" Grid.Row="0" Visibility="Hidden">
+            <local:SideControl x:Name="SideControl" Side="{Binding Side}"/>
+        </Grid>
+        <Grid x:Name="BreadsticksControlContainer" Grid.Row="0" Visibility="Hidden">
+            <local:BreadsticksControl x:Name="BreadsticksControl" Breadsticks="{Binding Breadsticks}"/>
+        </Grid>
+        <Grid x:Name="CinnamonSticksControlContainer" Grid.Row="0" Visibility="Hidden">
+            <local:CinnamonSticksControl x:Name="CinnamonSticksControl" CinnamonSticks="{Binding CinnamonSticks}"/>
+        </Grid>
+    </Grid>
+
+</UserControl>
+
